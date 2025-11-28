@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  safeclick-pwa:
+    build: .
+    container_name: safeclick-pwa
+    ports:
+      - "8080:80"
+    volumes:
+      - ./data:/var/www/html/data
+    # Não montar outros volumes para evitar sobreposição
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+    restart: unless-stopped
